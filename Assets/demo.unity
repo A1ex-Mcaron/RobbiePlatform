@@ -13937,9 +13937,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1983258438}
   - component: {fileID: 1983258437}
-  - component: {fileID: 1983258439}
-  - component: {fileID: 1983258441}
   - component: {fileID: 1983258440}
+  - component: {fileID: 1983258441}
+  - component: {fileID: 1983258439}
   m_Layer: 9
   m_Name: Robbie
   m_TagString: Untagged
@@ -14011,7 +14011,7 @@ Transform:
   m_GameObject: {fileID: 1983258436}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.87, y: 1.04, z: 0}
+  m_LocalPosition: {x: -3.62, y: 1.04, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -14038,6 +14038,10 @@ MonoBehaviour:
   isCrouch: 0
   isOnGround: 0
   isJump: 0
+  isHeadBlocked: 0
+  footOffset: 0.4
+  headCleearance: 0.5
+  groundDistance: 0.2
   groundLayer:
     serializedVersion: 2
     m_Bits: 256
@@ -14078,7 +14082,7 @@ BoxCollider2D:
   m_Enabled: 1
   serializedVersion: 3
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 124d724cffbd7714b9e959172eddc78c, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
