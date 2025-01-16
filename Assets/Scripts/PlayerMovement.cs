@@ -68,18 +68,22 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        if (!jumpPressed)
+        if (Input.GetButtonDown("Jump"))
         {
-            jumpPressed = Input.GetButtonDown("Jump");
+            jumpPressed = true;
         }
 
         jumpHeld = Input.GetButton("Jump");
         crouchHeld = Input.GetButton("Crouch");
-        crouchPressed = Input.GetButtonDown("Crouch");
+
+        if (Input.GetButtonDown("Crouch"))
+            crouchPressed = true;
     }
 
     private void FixedUpdate()
     {
+        if (!Input.GetButton("Jump"))
+            jumpPressed = false;
         PhysicsCheck();
         GroundMovement();
         MidAirmovement();
@@ -169,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, hangingJumpForce);
                 isHanging = false;
                 jumpPressed = false;
+                isJump = true;
             }
 
             if (crouchPressed)
@@ -197,6 +202,7 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(new Vector2(0f, jumpForce), ForceMode2D.Impulse);
             //确保跳跃键状态被重置
             jumpPressed = false;
+            crouchPressed = false;
         }
 
         else if (isJump)
@@ -204,10 +210,14 @@ public class PlayerMovement : MonoBehaviour
             if (jumpHeld)
             {
                 rb.AddForce(new Vector2(0f, jumpHoldForce), ForceMode2D.Impulse);
-                jumpPressed = false;
+                
             }
             if (jumpTime < Time.time)
+            {
                 isJump = false;
+                jumpPressed = false;
+            }
+                
         }
     }
 
@@ -229,6 +239,7 @@ public class PlayerMovement : MonoBehaviour
     void StandUp()
     {
         isCrouch = false;
+        crouchPressed = false;
         coll.size = colliderStandSize;
         coll.offset = colliderStandOffset;
     }
